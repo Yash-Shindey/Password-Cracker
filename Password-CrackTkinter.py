@@ -30,7 +30,7 @@ def check_password():
     if cracked_password:
         result_label.config(text="Password is: {}".format(cracked_password))
     else:
-        result_label.config(text="Password not found.")
+        result_label.config(text="Password not found. The password entered was {}".format(password))
     
     # Display the hashed password
     hashed_password_label.config(text="Hashed password: {}".format(hash_value))
@@ -50,7 +50,7 @@ password_entry = tk.Entry(root, show='*', font=("Helvetica", 14), width=25)
 # Create a button to check the password
 check_button = tk.Button(root, text="Check Password", font=("Helvetica", 14), command=check_password, bg='#4CAF50', fg='#ffffff', activebackground='#3e8e41', activeforeground='#ffffff', bd=0, padx=20, pady=10, highlightthickness=0)
 check_button.config(borderwidth=1, relief="solid", highlightbackground='#ffffff', highlightcolor='#ffffff')
-check_button.config(bg='green', fg='black')
+check_button.config(bg='#4CAF50', fg='black')
 
 # Create a label to display the result
 result_label = tk.Label(root, text="", font=("Helvetica", 14), bg='#f2f2f2', fg='#008080')
