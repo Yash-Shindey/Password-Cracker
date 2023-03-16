@@ -13,7 +13,11 @@ def crack_password(hash_value, password_list):
         if md5_hash(password) == hash_value:
             return password
     return None
+def on_enter(e):
+    check_button.config(background='green', foreground= "red")
 
+def on_leave(e):
+    check_button.config(background= 'green', foreground= 'blue')
 def check_password():
     # Get the password from the user
     password = password_entry.get()
@@ -29,8 +33,10 @@ def check_password():
     # Display the result
     if cracked_password:
         result_label.config(text="Password is: {}".format(cracked_password))
+        result_label.configure(bg='yellow')
     else:
         result_label.config(text="Password not found. The password entered was {}".format(password))
+        result_label.configure(bg='red')
     
     # Display the hashed password
     hashed_password_label.config(text="Hashed password: {}".format(hash_value))
@@ -38,7 +44,7 @@ def check_password():
 # Create the main window
 root = tk.Tk()
 root.title("Password Checker")
-root.geometry("400x250")
+root.geometry("800x400")
 root.configure(bg='#f2f2f2')
 
 # Create a label for password input
@@ -48,8 +54,9 @@ password_label = tk.Label(root, text="Enter Password:", font=("Helvetica", 14), 
 password_entry = tk.Entry(root, show='*', font=("Helvetica", 14), width=25)
 
 # Create a button to check the password
-check_button = tk.Button(root, text="Check Password", font=("Helvetica", 14), command=check_password, bg='#4CAF50', fg='#ffffff', activebackground='#3e8e41', activeforeground='#ffffff', bd=0, padx=20, pady=10, highlightthickness=0)
+check_button = tk.Button(root, text="Check Password", font=("Helvetica", 14), command=check_password, bg ='#65f50c', fg='#ffffff', activebackground='#3e8e41', activeforeground='#ffffff', bd=0, padx=20, pady=10, highlightthickness=0)
 check_button.config(borderwidth=1, relief="solid", highlightbackground='#ffffff', highlightcolor='#ffffff')
+#not very important button
 check_button.config(bg='#4CAF50', fg='black')
 
 # Create a label to display the result
@@ -64,6 +71,7 @@ password_entry.pack(pady=5)
 check_button.pack(pady=15)
 result_label.pack(pady=10)
 hashed_password_label.pack(pady=5)
-
+check_button.bind('<Enter>', on_enter)
+check_button.bind('<Leave>', on_leave)
 # Start the main event loop
 root.mainloop()
